@@ -25,7 +25,6 @@ const Home = () => {
   
     const data = await response.json();
     const { output } = data;
-    console.log("OpenAI replied Name...", output.text)
     setName(`${output.text}`);}
     setIsGenerating(false);
   }
@@ -35,7 +34,6 @@ useMemo(() => {if (!Name) {generateName()}},[]);
   const generateTag = async () => {
     setIsGenerating(true);
     if (Name){
-      console.log("NAME", Name)
     const response = await fetch('/api/getTag', {
       method: 'POST',
       headers: {
@@ -46,7 +44,6 @@ useMemo(() => {if (!Name) {generateName()}},[]);
   
     const data = await response.json();
     const { output } = data;
-    console.log("OpenAI replied Tag...", output.text)
     
     setTag(`${output.text}`)}
     setIsGenerating(false);
@@ -73,7 +70,6 @@ User Question:
 const callGenerateEndpoint = async () => {
   setIsGenerating(true);
   const textInput = `${basePromptPrefix}${userInput}\n ${Name}:`
-  console.log(textInput);
   setBaseText(textInput);
   const response = await fetch('/api/generate', {
     method: 'POST',
@@ -85,7 +81,6 @@ const callGenerateEndpoint = async () => {
 
   const data = await response.json();
   const { output } = data;
-  console.log("OpenAI replied...", output.text)
   setBaseText(`${baseText}${output.text}`);
   setApiOutput(`${output.text}`);
   setIsGenerating(false);

@@ -11,7 +11,6 @@ Name:
 `
 const generateAction = async (req, res) => {
   // Run first prompt
-  console.log(`API: ${basePromptPrefix}${req.body.Name}`)
 
   const baseCompletion = await openai.createCompletion({
     model: 'text-davinci-003',
